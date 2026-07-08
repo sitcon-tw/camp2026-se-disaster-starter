@@ -21,7 +21,7 @@ const nextStepLabels: Record<
   string
 > = {
   keep_raw: "先保留原始資訊",
-  ask_for_more_info: "補問來源或現場資訊",
+  ask_for_more_info: "補問取得方式或現場資訊",
   send_to_human_review: "交給人工確認",
   create_candidate_report: "建立候選通報",
   create_site_update_suggestion: "建立地點更新建議",

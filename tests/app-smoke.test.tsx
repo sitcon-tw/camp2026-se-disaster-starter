@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { App } from "../src/app/App";
+import messyReports from "../src/fixtures/phase-0/messy-reports.json";
 
 describe("App", () => {
   it("renders starter title", () => {
@@ -43,6 +44,21 @@ describe("App", () => {
     ).toBeInTheDocument();
     expect(screen.getAllByText("待人工確認").length).toBeGreaterThan(0);
     expect(screen.getAllByText("未查核").length).toBeGreaterThan(0);
+  });
+
+  it("does not present acquisition method as trust status", () => {
+    render(<App />);
+
+    expect(screen.getAllByText(/取得方式/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/不等於查核/).length).toBeGreaterThan(0);
+  });
+
+  it("keeps uncertain screenshots out of official notice source type", () => {
+    const uncertainScreenshot = messyReports.find(
+      (record) => record.id === "M-005",
+    );
+
+    expect(uncertainScreenshot?.sourceType).toBe("forwarded_screenshot");
   });
 
   it("keeps draft CRUD as learner work instead of starter output", () => {

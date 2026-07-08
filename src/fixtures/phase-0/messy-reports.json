@@ -30,7 +30,7 @@
   {
     "id": "M-005",
     "rawText": "截圖寫『中午前道路封閉』，但不知道截圖是哪一天，也不知道是不是官方公告。",
-    "sourceType": "official_notice",
+    "sourceType": "forwarded_screenshot",
     "verificationStatus": "needs_review",
     "updatedAt": "2026-07-20T10:32:00+08:00"
   },

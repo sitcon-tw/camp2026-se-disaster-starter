@@ -119,7 +119,7 @@ The starter repo is acceptable when:
 - `pnpm install` succeeds.
 - `pnpm check` succeeds.
 - It has Phase 0 original information.
-- It has a minimal Phase 0 UI for source, status, uncertainty, and review state.
+- It has a minimal Phase 0 UI for information acquisition method, status, uncertainty, and review state.
 - It has Phase 0 student context, brief, output path rules, task card instructions, sprint task, and debrief task.
 - It has `docs/phase0-observations.md` and `docs/ai-log.md`.
 - It has AGENTS, SAFETY, DATA_SOURCES, README, TEAM.

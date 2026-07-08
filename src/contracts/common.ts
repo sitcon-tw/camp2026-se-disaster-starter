@@ -12,6 +12,7 @@ export const sourceTypeSchema = z.enum([
   "field_report",
   "phone_call",
   "social_post",
+  "forwarded_screenshot",
   "official_notice",
   "volunteer_update",
   "mock",

@@ -44,7 +44,7 @@ src/app/App.tsx
 
 ```text
 讀 task card
-  → 找到資料來源
+  → 找到資訊取得方式
   → 先請 coding agent 分析原始資訊
   → 決定最小畫面
   → 接進 App.tsx / component
@@ -58,6 +58,6 @@ src/app/App.tsx
 交付前請回答：
 
 - [ ] 打開 GitHub Pages 首頁，是否能看到本階段成果？
-- [ ] 使用者是否能看出資料來源與查核狀態？
+- [ ] 使用者是否能看出資訊取得方式與查核狀態？
 - [ ] 不確定資料是否被清楚標示？
 - [ ] `docs/ai-log.md` 是否記錄重要 AI 協作？
