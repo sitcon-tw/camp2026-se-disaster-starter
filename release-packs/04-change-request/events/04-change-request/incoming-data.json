@@ -1,0 +1,60 @@
+{
+  "releaseId": "04-change-request",
+  "title": "現場新資訊與原本設計假設衝突",
+  "note": "這些資料是外部傳入的未整理資料，不代表已確認事實，也不一定符合你的資料格式。",
+  "events": [
+    {
+      "id": "EV-04-01",
+      "kind": "possible_duplicate",
+      "title": "AI 標記疑似重複，但兩筆資訊可能不是同一件事",
+      "incomingSource": "ai_similarity_notice",
+      "relatedRecordIds": ["M-003", "M-011"],
+      "message": "系統偵測 M-003 和 M-011 的地點文字相近，需求描述都提到清理後續處理，建議合併。",
+      "aiSuggestion": {
+        "suggested_action": "merge",
+        "similarity_score": "87%",
+        "reason": "地點相近，文字描述部分重疊"
+      },
+      "humanConcern": "其中一筆可能是原需求變更，另一筆可能是不同住戶或不同階段需求。不能只因為 AI 說相似就合併。",
+      "questionsForTeam": [
+        "你的 v1 是否能呈現 AI 建議只是建議，不是事實？",
+        "如果不合併，畫面能不能保留兩筆資訊？",
+        "如果合併，是否會保留原始資訊和判斷理由？"
+      ]
+    },
+    {
+      "id": "EV-04-02",
+      "kind": "site_status_conflict",
+      "title": "地點狀態回報與原本畫面衝突",
+      "incomingSource": "field_volunteer_update",
+      "site_id": "S-003",
+      "status": "closed?",
+      "last_seen": "下午三點",
+      "note": "現場沒有人，物資桌也收起來了，但旁邊居民說晚一點可能會再開。",
+      "humanConcern": "這筆資訊不能直接改成『已關閉』，也不能完全忽略。使用者需要知道目前狀態有不確定性。",
+      "questionsForTeam": [
+        "你的 v1 是否有地方呈現地點狀態不確定？",
+        "closed? 這種狀態要如何轉成你能理解的說法？",
+        "行動者看到這筆資訊時，會不會誤以為可以直接前往或完全不要前往？"
+      ]
+    },
+    {
+      "id": "EV-04-03",
+      "kind": "task_capacity_mismatch",
+      "title": "志工任務承接人數可能超過需求",
+      "incomingSource": "volunteer_group_message",
+      "task_id": "T-012",
+      "need_people": "10人",
+      "joined": "8",
+      "request_join": 3,
+      "state": "尚未媒合",
+      "message": "有一組 3 人志工隊想一起加入這個任務。",
+      "humanConcern": "需求人數和已加入人數用不同格式表示，而且加入後會超過需求人數。不能直接接受，也不能由 AI 自動決定是否加人。",
+      "questionsForTeam": [
+        "你的 v1 是否能看出人數資料格式不一致？",
+        "如果加入後超過需求人數，畫面應該提醒誰？",
+        "這件事應該自動阻擋，還是標示為需要人工確認？"
+      ]
+    }
+  ]
+}
