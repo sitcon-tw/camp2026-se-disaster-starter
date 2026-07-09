@@ -32,6 +32,10 @@
 | 時間  | 階段    | 任務         | AI / Agent 建議                        | 採用 / 拒絕 | 人類判斷理由                              | 相關檔案 / commit             |
 | ----- | ------- | ------------ | -------------------------------------- | ----------- | ----------------------------------------- | ----------------------------- |
 | 09:45 | Phase 0 | 分析原始資訊 | 建議把社群貼文直接轉成 verified report | 拒絕        | 社群貼文來源未確認，應保持 `needs_review` | `docs/phase0-observations.md` |
+| 2026-07-09 09:49 | Phase 0 | 分析並摘要 Phase 0 必讀文件與原始資料 | 列出每筆資料可見欄位、不可確定之處、並建議在 UI 保持 `needs_review`/`unverified` 標示 | 採用 | 保守處理，不補真實資料；將需要人工確認的欄位標示供後續人工核實 | `docs/phase0-observations.md`, `src/fixtures/phase-0/messy-reports.json` |
+| 2026-07-09 09:54 | Phase 0 | 實作最小工作台草稿功能 | 在工作台新增草稿建立/編輯/重設/刪除的 UI（僅存在於 client state），並在側欄顯示草稿標示與草稿數量 | 採用 | 讓小組能在不改動原始檔案下嘗試整理草稿與審核流程 | `src/features/phase-0/Phase0Editor.tsx`, `src/features/phase-0/Phase0Workbench.tsx` |
+| 2026-07-09 10:00 | Phase 0 | 預先建立示範草稿 | 為加速示範與達成 sprint 要求，預先在工作台初始化 6 筆保守草稿（前 2 筆為需要人類質疑的候選） | 採用 | 方便小組快速檢視草稿流程與完成第一階段檢查，草稿僅存在 UI state，無寫回 fixtures | `src/features/phase-0/Phase0Workbench.tsx` |
+| 2026-07-09 10:05 | Phase 0 | 標註示範草稿為需人類質疑 | 將初始化的前 2 筆草稿分別標記為 `confidence: low/medium`、加入 `blockers` 與 `humanReviewNote`，並將 `suggestedNextStep` 設為 `send_to_human_review` 以示範人類質疑流程 | 採用 | 讓學生在打開工作台時立即看到需要人工核實的範例，方便教學演示 | `src/features/phase-0/Phase0Workbench.tsx` |
 
 ## 課後反思
 
