@@ -1,3 +1,6 @@
+import { SourceLabel } from "../../components/SourceLabel";
+import { StatusBadge } from "../../components/StatusBadge";
+import { formatDateTime } from "../../lib/date";
 import type { Phase0JudgementDraft, Phase0MessyRecord } from "./phase0-types";
 
 export function Phase0Editor({
@@ -16,7 +19,13 @@ export function Phase0Editor({
   if (!draft) {
     return (
       <div className="editor">
-        <p>尚未建立草稿。按「建立草稿」開始（僅為 UI 狀態）。</p>
+        <div className="editor__placeholder">
+          <h3>尚未建立整理草稿</h3>
+          <p>
+            這裡還沒有草稿。請 agent 加上建立、編輯、刪除或重設整理草稿，
+            不要把未確認的原始資訊直接當成事實。
+          </p>
+        </div>
         <button type="button" onClick={() => onChange({
           messyRecordId: record.id,
           possibleKind: "unknown",
@@ -42,7 +51,22 @@ export function Phase0Editor({
 
   return (
     <form className="editor" onSubmit={(e) => e.preventDefault()}>
-      <h3>草稿編輯：{record.id}</h3>
+      <div className="editor__header">
+        <div>
+          <p className="eyebrow">原始資訊 & 草稿</p>
+          <h3>{record.id}</h3>
+          <p>{record.rawText}</p>
+        </div>
+        <div className="editor__summary">
+          <StatusBadge status={record.verificationStatus} />
+          <div className="editor__record-meta">
+            <SourceLabel sourceType={record.sourceType} />
+            <span>{formatDateTime(record.updatedAt)}</span>
+          </div>
+        </div>
+      </div>
+
+      <h4>草稿編輯</h4>
 
       <label>
         候選類型

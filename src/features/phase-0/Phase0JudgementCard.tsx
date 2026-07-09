@@ -39,15 +39,15 @@ export function Phase0JudgementCard({
     <article className="judgement-card">
       <div className="judgement-card__header">
         <div>
-          <p className="eyebrow">Starter 安全預設</p>
+          <p className="eyebrow">Starter 初始判斷</p>
           <h3>尚未建立整理草稿</h3>
         </div>
         <StatusBadge status={record.verificationStatus} />
       </div>
 
       <p>
-        這張卡只保留保守的安全邊界，不是 agent 對這筆資料的整理答案。請讓 coding
-        agent 實作可建立、編輯與刪除的整理草稿。
+        這張卡是原始資料的初始說明，不應被當成最終判斷。請讓 coding agent 實作
+        建立、編輯與刪除的整理草稿。
       </p>
 
       <dl className="judgement-summary">
@@ -73,7 +73,7 @@ export function Phase0JudgementCard({
       </p>
 
       <section>
-        <h4>目前只有安全預設</h4>
+        <h4>目前判斷提示</h4>
         <ul>
           {judgement.evidence.map((item) => (
             <li key={item}>{item}</li>

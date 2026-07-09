@@ -1,9 +1,6 @@
-import { StatusBadge } from "../../components/StatusBadge";
-import Phase0Editor from "./Phase0Editor";
-import type { Phase0MessyRecord, Phase0JudgementDraft } from "./phase0-types";
-import { useState } from "react";
+import type { Phase0JudgementDraft } from "./phase0-types";
 
-const initialDrafts: Record<string, Phase0JudgementDraft> = {
+export const initialDrafts: Record<string, Phase0JudgementDraft> = {
   "M-001": {
     messyRecordId: "M-001",
     possibleKind: "task_candidate",
@@ -150,66 +147,3 @@ const initialDrafts: Record<string, Phase0JudgementDraft> = {
       "需核實被幫助者位置與診療需求，確認是否由醫療單位介入。",
   },
 };
-
-export function Phase0Workbench({
-  records,
-  selectedRecordId,
-  drafts,
-  onSelect,
-  onSaveDraft,
-  onDeleteDraft,
-  onResetDraft,
-}: {
-  records: Phase0MessyRecord[];
-  selectedRecordId: string;
-  drafts: Record<string, Phase0JudgementDraft | undefined>;
-  onSelect: (recordId: string) => void;
-  onSaveDraft: (draft: Phase0JudgementDraft) => void;
-  onDeleteDraft: (recordId: string) => void;
-  onResetDraft: (recordId: string) => void;
-}) {
-  const selectedRecord =
-    records.find((record) => record.id === selectedRecordId) ?? records[0];
-  const draftCount = Object.keys(drafts).filter((k) => drafts[k]).length;
-
-  return (
-    <div className="workbench">
-      <div className="workbench__intro">
-        <p className="eyebrow">整理工作台</p>
-        <h2>第一階段的成功不是分類正確，而是把為什麼現在還不能判斷說清楚。</h2>
-        <p>
-          這裡先保留原始回報與草稿編輯，避免把未確認資訊誤當作已確認。
-          真正的候選判斷要由小組和 coding agent 補上；這不是 runtime LLM
-          分析，也不是正式資料模型。
-        </p>
-      </div>
-
-      <div className="workbench__layout">
-        <aside className="workbench__queue" aria-label="選擇原始資訊">
-          {records.map((record) => (
-            <button
-              className={record.id === selectedRecord.id ? "active" : ""}
-              key={record.id}
-              type="button"
-              onClick={() => onSelect(record.id)}
-            >
-              <span>{record.id}</span>
-              <StatusBadge status={record.verificationStatus} />
-              {drafts[record.id] ? <span className="badge badge--draft">草稿</span> : null}
-            </button>
-          ))}
-        </aside>
-
-        <div className="workbench__main">
-          <Phase0Editor
-            record={selectedRecord}
-            draft={drafts[selectedRecord.id]}
-            onChange={onSaveDraft}
-            onDelete={() => onDeleteDraft(selectedRecord.id)}
-            onReset={() => onResetDraft(selectedRecord.id)}
-          />
-        </div>
-      </div>
-    </div>
-  );
-}

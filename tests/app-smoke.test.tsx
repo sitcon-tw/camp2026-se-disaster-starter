@@ -50,10 +50,8 @@ describe("App", () => {
 
     fireEvent.click(screen.getByRole("button", { name: "整理工作台" }));
 
-    expect(screen.getByText("尚未建立整理草稿")).toBeInTheDocument();
-    expect(
-      screen.getByText(/請 agent 加上建立、編輯、刪除或重設整理草稿/),
-    ).toBeInTheDocument();
+    expect(screen.queryByText("尚未建立整理草稿")).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "儲存草稿" })).toBeInTheDocument();
     expect(
       screen.queryByText(/已產生 \d+ 筆安全邊界草稿/),
     ).not.toBeInTheDocument();
